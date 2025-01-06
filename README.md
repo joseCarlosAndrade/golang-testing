@@ -63,13 +63,31 @@ func TestMethodFromInterface(t * testing.T) {
 }
 ```
 
-## Running the tests:
+## Running the tests
 
 ```bash
-go test ./...
+go test ./... -v # v for verbose
 
 ```
 
 ## Makefile
 
 Use `make mocks` for mocks creation automation.
+
+## Table Driven Test
+
+Use the `mocking_test.go` as example.
+
+## Logging
+
+```go
+t.Logf("Testing with InputID: %d, Expected: %s, ExpectErr: %v", tc.inputID, tc.expected, tc.expectErr)
+```
+
+## Loggin with types
+
+Useful for vectors, slices, structs, etc.
+
+```go
+t.Logf("Testing with structure: %#v", structure)
+```

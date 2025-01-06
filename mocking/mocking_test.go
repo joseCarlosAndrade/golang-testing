@@ -27,4 +27,53 @@ func TestGetUser(t *testing.T) {
 
 func TestGetUserTable(t *testing.T) {
 	mockGetUser := new(mocks.DataBaseInterface)
+
+	// defining test cases
+
+	tests := []struct {
+		name string
+		inputId int
+		mockReturn string
+		mockError error
+		expectedUser string
+		expectedError error
+	}{
+		{
+			name: "Test 1 - Valid user no error",
+			inputId: 1,
+			mockReturn: "user1",
+			mockError: nil,
+			expectedUser: "user1",
+			expectedError: nil,
+		},
+		{
+			name: "Test 2 - Error",
+			inputId: -999,
+			mockReturn: "",
+			mockError: assert.AnError,
+			expectedUser: "",
+			expectedError: assert.AnError,
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t*testing.T){
+			// mocking
+			mockGetUser.On("GetUser", tc.inputId).Return(tc.mockReturn, tc.mockError)
+
+			// calling the generated mock
+			result, err := mockGetUser.GetUser(tc.inputId)
+
+			if tc.expectedError != nil { // if we expect an error
+				assert.Error(t, err) // assert that an error is returned
+				assert.Equal(t, tc.expectedError, err) // assert that the error is the expected error
+			} else { // if we don't expect an error
+				assert.NoError(t, err) // assert that no error is returned
+				assert.Equal(t, tc.expectedUser, result) // assert that the result is the expected result
+			}
+			// assert that the expectations were met
+			mockGetUser.AssertExpectations(t)
+		})
+	}
+
 }
