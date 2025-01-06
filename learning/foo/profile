@@ -1,0 +1,4 @@
+mode: set
+learning-test/foo/foo.go:6.30,7.32 1 1
+learning-test/foo/foo.go:7.32,9.3 1 1
+learning-test/foo/foo.go:11.2,11.28 1 1
