@@ -24,3 +24,7 @@ func TestGetUser(t *testing.T) {
 	// assert that the expectations were met
 	mockUserService.AssertExpectations(t)
 }
+
+func TestGetUserTable(t *testing.T) {
+	mockGetUser := new(mocks.DataBaseInterface)
+}

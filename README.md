@@ -46,7 +46,7 @@ Create the unit test
 
 ```go
 func TestMethodFromInterface(t * testing.T) {
-    mockMethodFromInterface := new(mocks.MethodFromInterface)
+    mockMethodFromInterface := new(mocks.InterfaceName)
 
     // mock the MethodName when called with argument 1
     mockMethodFromInterface.On("MehodName", 1).Return("return statement 1", "return statement 2", nil)
